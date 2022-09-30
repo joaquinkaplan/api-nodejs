@@ -1,5 +1,4 @@
 const { tracksModel } = require("../models");
-const tracks = require("../models/nosql/tracks");
 
 const getItems = async (req, res) => {
   const data = await tracksModel.find({});
