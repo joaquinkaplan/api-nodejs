@@ -11,7 +11,7 @@ const { validatorGetItem } = require("../validators/storage");
 
 router.get("/", getItems);
 router.get("/:id", validatorGetItem, getItem);
-router.delete("/:id", deleteItem);
+router.delete("/:id", validatorGetItem, deleteItem);
 router.post("/", uploadMiddleware.single("myfile"), createItem);
 
 module.exports = router;
