@@ -4,10 +4,11 @@ const { handleHttpError } = require("../utils/handleError");
 
 const getItems = async (req, res) => {
   try {
+    const user = req.user;
     const data = await tracksModel.find({});
 
     if (data !== undefined) {
-      res.send({ data });
+      res.send({ data, user });
     } else {
       res.send({ response: "no data available" });
     }

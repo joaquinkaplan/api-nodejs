@@ -1,6 +1,7 @@
 const { compare } = require("bcryptjs");
 const { handleHttpError } = require("./handleError");
 const { tokenSign, verifyToken } = require("./handleJwt");
+const { loggerStream } = require("./handleLogger");
 const { encrypt } = require("./handlePassword");
 const uploadMiddleware = require("./handleStorage");
 const { validateResults } = require("./handleValidator");
@@ -13,4 +14,5 @@ module.exports = {
   encrypt,
   validateResults,
   compare,
+  loggerStream,
 };
