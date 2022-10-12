@@ -10,9 +10,10 @@ const {
   validatorCreateItem,
   validatorGetItem,
 } = require("../validators/tracks");
+const { authMiddleware } = require("../middlewares");
 const router = express.Router();
 
-router.get("/", getItems);
+router.get("/", authMiddleware, getItems);
 router.get("/:id", validatorGetItem, getItem);
 router.post("/", validatorCreateItem, createItem);
 router.put("/:id", validatorCreateItem, validatorGetItem, updateItem);
