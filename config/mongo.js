@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const dbConnect = () => {
+const dbConnectNoSql = () => {
   const DB_URI = process.env.DB_URI;
   mongoose.connect(
     DB_URI,
@@ -19,4 +19,4 @@ const dbConnect = () => {
   );
 };
 
-module.exports = dbConnect;
+module.exports = dbConnectNoSql;
