@@ -34,6 +34,7 @@ const createItem = async (req, res) => {
     const data = await tracksModel.create(body);
     res.send({ data });
   } catch (e) {
+    console.log(e);
     handleHttpError(res, "ERROR_CREATE_ITEM");
   }
 };

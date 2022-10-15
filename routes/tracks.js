@@ -12,6 +12,7 @@ const {
 } = require("../validators/tracks");
 const { authMiddleware, checkRole } = require("../middlewares");
 const router = express.Router();
+const ENGINE_DB = process.env.ENGINE_DB;
 
 router.get("/", authMiddleware, getItems);
 router.get("/:id", authMiddleware, validatorGetItem, getItem);

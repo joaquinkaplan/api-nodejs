@@ -6,7 +6,6 @@ const Tracks = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     album: {
       type: DataTypes.STRING,
@@ -29,9 +28,9 @@ const Tracks = sequelize.define(
     duration_end: {
       type: DataTypes.INTEGER,
     },
-    mediaId: {
-      type: DataTypes.STRING,
-    },
+    // mediaId: {
+    //   type: DataTypes.STRING,
+    // },
   },
   {
     timestamps: true,
