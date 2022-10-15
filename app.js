@@ -1,10 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const dbConnectNoSql = require("./config/mongo");
 const morganBody = require("morgan-body");
 const { loggerStream } = require("./utils");
-const { dbConnectMySql } = require("./config/mysql");
+const { dbConnectMySql, dbConnectNoSql } = require("./config");
 const app = express();
 const ENGINE_DB = process.env.ENGINE_DB;
 
