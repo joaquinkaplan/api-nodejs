@@ -1,5 +1,7 @@
 const { handleHttpError, verifyToken } = require("../utils");
 const { usersModel } = require("../models");
+const { getProperties } = require("../utils");
+const propertiesKey = getProperties();
 
 const authMiddleware = async (req, res, next) => {
   let bearer = req.headers.authorization;
@@ -17,7 +19,11 @@ const authMiddleware = async (req, res, next) => {
       return;
     }
 
-    const user = await usersModel.findById(dataToken._id);
+    const query = {
+      [propertiesKey.id]: dataToken[propertiesKey.id],
+    };
+
+    const user = await usersModel.findOne(query);
     req.user = user;
 
     next();
