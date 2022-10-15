@@ -3,6 +3,7 @@ const { encrypt, compare } = require("../utils/handlePassword");
 const { tokenSign } = require("../utils/handleJwt");
 const { usersModel } = require("../models");
 const { handleHttpError } = require("../utils/handleError");
+const ENGINE_DB = process.env.ENGINE_DB;
 
 const registerCtrl = async (req, res) => {
   try {
@@ -24,9 +25,11 @@ const registerCtrl = async (req, res) => {
 const loginCtrl = async (req, res) => {
   try {
     req = matchedData(req);
-    const user = await usersModel
-      .findOne({ email: req.email })
-      .select("password name role email");
+
+    const user =
+      ENGINE_DB === "nosql"
+        ? await usersModel.findOne({ email: req.email })
+        : await usersModel.findOne({ where: { email: req.email } });
     if (!user) {
       handleHttpError(res, "USER_NOT_EXISTS", 404);
       return;
@@ -48,6 +51,7 @@ const loginCtrl = async (req, res) => {
 
     res.send({ data });
   } catch (e) {
+    console.log(e);
     handleHttpError(res, "ERROR_LOGIN_USER");
   }
 };
