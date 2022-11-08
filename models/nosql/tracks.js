@@ -47,5 +47,7 @@ const TracksScheme = new mongoose.Schema(
   }
 );
 
+// FOR FUTURE USE: CAN USE $LOOKUP HERE TO RELATE BETWEEN COLLECTIONS OF THE SAME DB.
+
 TracksScheme.plugin(mongooseDelete, { overrideMethods: "all" });
 module.exports = mongoose.model("tracks", TracksScheme);
