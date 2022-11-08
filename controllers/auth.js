@@ -28,7 +28,7 @@ const loginCtrl = async (req, res) => {
 
     const user =
       ENGINE_DB === "nosql"
-        ? await usersModel.findOne({ email: req.email })
+        ? await usersModel.findOne({ email: req.email }).select("+password")
         : await usersModel.findOne({ where: { email: req.email } });
     if (!user) {
       handleHttpError(res, "USER_NOT_EXISTS", 404);

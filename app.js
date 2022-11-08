@@ -2,8 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morganBody = require("morgan-body");
+const swaggerUi = require("swagger-ui-express");
 const { loggerStream } = require("./utils");
 const { dbConnectMySql, dbConnectNoSql } = require("./config");
+const openApiConfiguration = require("./docs/swagger");
 const app = express();
 const ENGINE_DB = process.env.ENGINE_DB;
 
@@ -20,6 +22,12 @@ morganBody(app, {
 });
 
 const port = process.env.PORT || 3000;
+
+app.use(
+  "/documentation",
+  swaggerUi.serve,
+  swaggerUi.setup(openApiConfiguration)
+);
 
 // ROUTES
 app.use("/api", require("./routes"));
